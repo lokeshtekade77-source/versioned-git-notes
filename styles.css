@@ -1,0 +1,153 @@
+/* --- Custom Properties --- */
+:root {
+    --bg-color: #0A0A1A;
+    --primary-accent: #00F6FF;
+    --secondary-accent: #FF00FF;
+    --text-color: #EAEAEA;
+    --primary-accent-trans: rgba(0, 246, 255, 0.2);
+}
+
+/* --- Base Styles --- */
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: 'Inter', sans-serif;
+}
+
+.font-code {
+    font-family: 'Fira Code', monospace;
+}
+
+/* --- UI Components --- */
+.glass-effect {
+    background: rgba(26, 26, 42, 0.4);
+    backdrop-filter: blur(12px);
+    border: 1px solid var(--primary-accent-trans);
+    border-radius: 16px;
+}
+
+.card-glow-border {
+    transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+}
+
+.card-glow-border:hover {
+    border-color: var(--primary-accent);
+    transform: translateY(-8px);
+    box-shadow: 0 0 20px rgba(0, 246, 255, 0.5);
+}
+
+.text-glow {
+    text-shadow: 0 0 8px var(--primary-accent), 0 0 20px rgba(0, 246, 255, 0.5);
+}
+
+/* --- Animations --- */
+.scroll-fade {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+.scroll-fade.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* --- Preloader --- */
+#preloader {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: var(--bg-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    font-size: 1.2rem;
+    color: var(--primary-accent);
+}
+.loader-text::after {
+    content: '_';
+    animation: blink 1s step-end infinite;
+}
+@keyframes blink {
+    50% { opacity: 0; }
+}
+
+/* --- Terminal Simulator --- */
+#terminal-output {
+    font-family: 'Fira Code', monospace;
+    font-size: 0.9rem;
+    color: #EAEAEA;
+}
+#terminal-input {
+    width: 100%;
+    padding: 0.75rem;
+    padding-left: 2rem; /* space for the '>' prompt */
+    border-radius: 8px;
+    background-color: rgba(0, 0, 0, 0.4);
+    color: #00FF99;
+    border: 1px solid var(--primary-accent-trans);
+    font-family: 'Fira Code', monospace;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+#terminal-input:focus {
+    outline: none;
+    border-color: var(--primary-accent);
+    box-shadow: 0 0 15px rgba(0, 246, 255, 0.4);
+}
+
+/* --- Note Modal Content Styling --- */
+#modal-content h1, #modal-content h2, #modal-content h3 {
+    font-weight: 700;
+    color: var(--primary-accent);
+    margin-top: 1.5em;
+    margin-bottom: 0.5em;
+}
+#modal-content h1 { font-size: 2rem; }
+#modal-content h2 { font-size: 1.5rem; border-bottom: 1px solid var(--primary-accent-trans); padding-bottom: 0.3rem; }
+#modal-content h3 { font-size: 1.25rem; }
+#modal-content p { margin-bottom: 1rem; line-height: 1.6; }
+#modal-content ul, #modal-content ol { list-style-position: inside; margin-left: 1.5rem; margin-bottom: 1rem; }
+#modal-content code {
+    font-family: 'Fira Code', monospace;
+    background-color: rgba(0, 0, 0, 0.3);
+    color: #FF00FF;
+    padding: 0.2rem 0.4rem;
+    border-radius: 4px;
+    font-size: 0.9em;
+}
+#modal-content pre {
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 1rem;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    overflow-x: auto;
+    position: relative;
+}
+#modal-content pre code {
+    background: none;
+    padding: 0;
+    color: var(--text-color);
+}
+
+/* Copy Code Button */
+.copy-code-btn {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    background: rgba(0, 246, 255, 0.1);
+    color: var(--primary-accent);
+    border: 1px solid var(--primary-accent-trans);
+    padding: 0.25rem 0.5rem;
+    border-radius: 5px;
+    font-size: 0.8rem;
+    cursor: pointer;
+    opacity: 0.5;
+    transition: 0.2s;
+}
+pre:hover .copy-code-btn {
+    opacity: 1;
+}
+.copy-code-btn:hover {
+    background: rgba(0, 246, 255, 0.3);
+    border-color: var(--primary-accent);
+}
